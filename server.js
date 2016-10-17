@@ -1,9 +1,11 @@
+const PROJECT_ID = 'cowork-group'
+const BUCKET_NAME = 'cowork-group'
+const KEY_FILE_PATH = 'keyfile.json'
+
+
+
 var app = require('express')()
 const gcloud = require('google-cloud')
-
-const PROJECT_ID = 'cowork-group'
-const KEY_FILE_PATH = 'keyfile.json'
-const BUCKET_NAME = 'cowork-group'
 
 const gcs = gcloud.storage({
   projectId: PROJECT_ID,
