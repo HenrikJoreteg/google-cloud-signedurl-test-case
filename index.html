@@ -1,0 +1,38 @@
+<h3>select a file:</h3>
+<input id='file' type="file" name="file">
+<h3>signed url:</h3>
+<p id='url'></p>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js'></script>
+<script>
+  function upload(blobOrFile, url) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', url, true);
+    xhr.onload = function(e) {
+      console.log('DONE!')
+    };
+    xhr.upload.onprogress = function(e) {
+      if (e.lengthComputable) {
+        console.log((e.loaded / e.total) * 100)
+      }
+    };
+
+    xhr.send(blobOrFile);
+  }
+
+  var fileEl = document.querySelector('#file')
+  var urlEl = document.querySelector('#url')
+
+  var file = null
+  var signedUrl = ''
+
+  fileEl.onchange = function () {
+    file = this.files[0]
+    console.log(file)
+    fetch('/url?file=' + file.name)
+      .then(res => res.text())
+      .then(body => {
+        urlEl.textContent = body
+        upload(file, body)
+      })
+  }
+</script>
