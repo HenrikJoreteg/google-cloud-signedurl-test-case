@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
-    "google-cloud": "^0.41.2"
+    "google-cloud": "^0.41.2",
+    "request": "^2.75.0"
   }
 }

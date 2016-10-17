@@ -28,7 +28,7 @@
   fileEl.onchange = function () {
     file = this.files[0]
     console.log(file)
-    fetch('/url?file=' + file.name)
+    fetch('/url?file=' + file.name + '&type=' + file.type)
       .then(res => res.text())
       .then(body => {
         urlEl.textContent = body
